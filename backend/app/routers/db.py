@@ -11,7 +11,7 @@ router = APIRouter()
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
 
-@lru_cache
+@lru_cache()
 def get_settings():
     return config.Settings()
 
@@ -41,10 +41,18 @@ class TextRequest(BaseModel):
 async def upload(body: TextRequest):
     txt = body.text
     vector = model.encode(txt).tolist()
+    curr_vector_count = (index.describe_index_stats())["total_vector_count"]
+    new_vector_count = int(curr_vector_count) + 1
     index.upsert(
-        vectors=[{"id": "Chunk-1", "values": vector}], namespace=namespace_name
+        vectors=[
+            {
+                "id": "Chunk-" + str(new_vector_count),
+                "values": vector,
+                "metadata": {"sentence": txt},
+            }
+        ],
+        namespace=namespace_name,
     )
-    print(index.describe_index_stats())
     return {"Message": "Success"}
 
 
@@ -53,10 +61,14 @@ async def retrieve(body: TextRequest):
     txt = body.text
     query_vector = model.encode(txt).tolist()
     results = index.query(
-        vector=query_vector, top_k=5, include_values=True, namespace=namespace_name
+        vector=query_vector,
+        top_k=5,
+        include_values=True,
+        include_metadata=True,
+        namespace=namespace_name,
     )
-    match_vectors = [match["values"] for match in results.matches]
-    print(match_vectors)
+    match_sentences = [match["metadata"]["sentence"] for match in results.matches]
+    print(match_sentences)
     return {"Message": "Success", "Results": None}
 
 
