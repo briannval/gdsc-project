@@ -68,8 +68,7 @@ async def retrieve(body: TextRequest):
         namespace=namespace_name,
     )
     match_sentences = [match["metadata"]["sentence"] for match in results.matches]
-    print(match_sentences)
-    return {"Message": "Success", "Results": None}
+    return {"Message": "Success", "Results": match_sentences}
 
 
 @router.delete("/delete")
