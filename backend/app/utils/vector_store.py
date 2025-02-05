@@ -34,20 +34,37 @@ class VectorStore:
             if "ALREADY_EXISTS" in str(e):
                 print(f"Index '{self.index_name}' already exists. Skipping creation.")
 
+    def upsert_index(self, res):
+        self.index.upsert(
+            vectors=res,
+            namespace=self.namespace_name,
+        )
+
+    def upload_vectors(self, sents: list[str]):
+        vectors = self.model.encode(sents).tolist()
+        curr_vector_count = self.index.describe_index_stats()["total_vector_count"]
+        vector_data = [
+            {
+                "id": f"Chunk-{curr_vector_count + i + 1}",
+                "values": vectors[i],
+                "metadata": {"sentence": sents[i]},
+            }
+            for i in range(len(sents))
+        ]
+        self.upsert_index(vector_data)
+
     def upload_vector(self, text: str):
         vector = self.model.encode(text).tolist()
         curr_vector_count = (self.index.describe_index_stats())["total_vector_count"]
         new_vector_count = int(curr_vector_count) + 1
-        self.index.upsert(
-            vectors=[
-                {
-                    "id": "Chunk-" + str(new_vector_count),
-                    "values": vector,
-                    "metadata": {"sentence": text},
-                }
-            ],
-            namespace=self.namespace_name,
-        )
+        res = [
+            {
+                "id": "Chunk-" + str(new_vector_count),
+                "values": vector,
+                "metadata": {"sentence": text},
+            }
+        ]
+        self.upsert_index(res)
 
     def retrieve_vectors(self, text: str):
         query_vector = self.model.encode(text).tolist()
