@@ -17,7 +17,8 @@ class TextRequest(BaseModel):
 async def upload_multiple(body: TextRequest):
     txt = body.text
     sents = sentence_splitter.split(txt)
-    return {"Message": sents}
+    vector_store.upload_vectors(sents)
+    return {"Message": "Success"}
 
 
 @router.post("/upload")
