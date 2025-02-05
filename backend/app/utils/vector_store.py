@@ -5,58 +5,77 @@ from sentence_transformers import SentenceTransformer
 
 from .. import config
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
 
+class VectorStore:
+    def __init__(self):
+        self.model = SentenceTransformer("all-MiniLM-L6-v2")
+        self.settings = self.get_settings()
+        self.pc = Pinecone(api_key=self.settings.pinecone_api_key)
+        self.index_name = "gdsc-project"
+        self.namespace_name = "ubc-info"
 
-@lru_cache()
-def get_settings():
-    return config.Settings()
+        # Create or connect to the Pinecone index
+        self.create_index()
+        self.index = self.pc.Index(self.index_name)
 
+    @lru_cache()
+    def get_settings(self):
+        return config.Settings()
 
-pc = Pinecone(api_key=get_settings().pinecone_api_key)
-index_name = "gdsc-project"
+    def create_index(self):
+        try:
+            self.pc.create_index(
+                name=self.index_name,
+                dimension=384,
+                metric="cosine",
+                spec=ServerlessSpec(cloud="aws", region="us-east-1"),
+            )
+        except Exception as e:
+            if "ALREADY_EXISTS" in str(e):
+                print(f"Index '{self.index_name}' already exists. Skipping creation.")
 
-try:
-    pc.create_index(
-        name=index_name,
-        dimension=384,
-        metric="cosine",
-        spec=ServerlessSpec(cloud="aws", region="us-east-1"),
-    )
-except Exception as e:
-    if "ALREADY_EXISTS" in str(e):
-        print(f"Index '{index_name}' already exists. Skipping creation.")
-index = pc.Index(index_name)
-namespace_name = "ubc-info"
+    def upsert_index(self, res):
+        self.index.upsert(
+            vectors=res,
+            namespace=self.namespace_name,
+        )
 
+    def upload_vectors(self, sents: list[str]):
+        vectors = self.model.encode(sents).tolist()
+        curr_vector_count = self.index.describe_index_stats()["total_vector_count"]
+        vector_data = [
+            {
+                "id": f"Chunk-{curr_vector_count + i + 1}",
+                "values": vectors[i],
+                "metadata": {"sentence": sents[i]},
+            }
+            for i in range(len(sents))
+        ]
+        self.upsert_index(vector_data)
 
-def upload_vector(text: str):
-    vector = model.encode(text).tolist()
-    curr_vector_count = (index.describe_index_stats())["total_vector_count"]
-    new_vector_count = int(curr_vector_count) + 1
-    index.upsert(
-        vectors=[
+    def upload_vector(self, text: str):
+        vector = self.model.encode(text).tolist()
+        curr_vector_count = (self.index.describe_index_stats())["total_vector_count"]
+        new_vector_count = int(curr_vector_count) + 1
+        res = [
             {
                 "id": "Chunk-" + str(new_vector_count),
                 "values": vector,
                 "metadata": {"sentence": text},
             }
-        ],
-        namespace=namespace_name,
-    )
+        ]
+        self.upsert_index(res)
 
+    def retrieve_vectors(self, text: str):
+        query_vector = self.model.encode(text).tolist()
+        results = self.index.query(
+            vector=query_vector,
+            top_k=5,
+            include_values=True,
+            include_metadata=True,
+            namespace=self.namespace_name,
+        )
+        return [match["metadata"]["sentence"] for match in results.matches]
 
-def retrieve_vectors(text: str):
-    query_vector = model.encode(text).tolist()
-    results = index.query(
-        vector=query_vector,
-        top_k=5,
-        include_values=True,
-        include_metadata=True,
-        namespace=namespace_name,
-    )
-    return [match["metadata"]["sentence"] for match in results.matches]
-
-
-def delete_vector(vector_id: str):
-    index.delete(ids=[vector_id], namespace=namespace_name)
+    def delete_vector(self, vector_id: str):
+        self.index.delete(ids=[vector_id], namespace=self.namespace_name)
