@@ -1,14 +1,23 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
+from ..utils.sentence_splitter import SentenceSplitter
 from ..utils.vector_store import VectorStore
 
 router = APIRouter()
 vector_store = VectorStore()
+sentence_splitter = SentenceSplitter()
 
 
 class TextRequest(BaseModel):
     text: str
+
+
+@router.post("/upload-multiple")
+async def upload_multiple(body: TextRequest):
+    txt = body.text
+    sents = sentence_splitter.split(txt)
+    return {"Message": sents}
 
 
 @router.post("/upload")
