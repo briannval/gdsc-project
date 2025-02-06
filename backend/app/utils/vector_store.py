@@ -13,8 +13,6 @@ class VectorStore:
         self.pc = Pinecone(api_key=self.settings.pinecone_api_key)
         self.index_name = "gdsc-project"
         self.namespace_name = "ubc-info"
-
-        # Create or connect to the Pinecone index
         self.create_index()
         self.index = self.pc.Index(self.index_name)
 
