@@ -1,12 +1,14 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
+from ..utils.local_model import LocalModel
 from ..utils.sentence_splitter import SentenceSplitter
 from ..utils.vector_store import VectorStore
 
 router = APIRouter()
 vector_store = VectorStore()
 sentence_splitter = SentenceSplitter()
+local_model = LocalModel()
 
 
 class TextRequest(BaseModel):
@@ -32,7 +34,9 @@ async def upload(body: TextRequest):
 async def retrieve(body: TextRequest):
     txt = body.text
     match_sentences = vector_store.retrieve_vectors(txt)
-    return {"Message": "Success", "Results": match_sentences}
+    joined_sentences = sentence_splitter.join(match_sentences)
+    res = local_model.send_query(joined_sentences, txt)
+    return {"Message": "Success", "Results": res["message"]["content"]}
 
 
 @router.delete("/delete")

@@ -1,5 +1,6 @@
 import nltk
 from nltk.tokenize import sent_tokenize
+from nltk.tokenize.treebank import TreebankWordDetokenizer
 
 
 class SentenceSplitter:
@@ -9,3 +10,6 @@ class SentenceSplitter:
 
     def split(self, text):
         return sent_tokenize(text)
+
+    def join(self, sents):
+        return TreebankWordDetokenizer().detokenize(sents)
