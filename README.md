@@ -55,3 +55,11 @@ Start the application
 ```
 
 Visit **http://0.0.0.0:8000** to access the backend (CORS is supported).
+
+Make a query with a POST request to the `/db/retrieve` endpoint.
+
+```bash
+curl -X POST "http://0.0.0.0:8000/db/retrieve" \
+     -H "Content-Type: application/json" \
+     -d '{"text": "What does computer science at UBC teach?"}'
+```
