@@ -20,14 +20,16 @@ class TextRequest(BaseModel):
 class S3UploadRequest(BaseModel):
     text: str
     file_name: str
+    url: str
 
 
 @router.post("/upload-s3")
 async def upload_to_s3(body: S3UploadRequest):
     txt = body.text
     file_name = body.file_name
+    url = body.url
     sents = sentence_splitter.split(txt)
-    s3_store.upload_vectors(sents, file_name)
+    s3_store.upload_vectors(sents, file_name, url)
     return {"Message": "Success"}
 
 

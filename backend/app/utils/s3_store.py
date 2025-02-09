@@ -33,10 +33,10 @@ class S3Store:
             ContentType="application/json",
         )
 
-    def upload_vectors(self, sents, file_name):
+    def upload_vectors(self, sents, file_name, url):
         vectors = self.model.encode(sents)
         data = {
-            "url": "https://your_website.com",
+            "url": url,
             "sentences": sents,
             "embeddings": vectors,
         }
