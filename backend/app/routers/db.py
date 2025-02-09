@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 
 from ..utils.local_model import LocalModel
+from ..utils.s3_store import S3Store
 from ..utils.sentence_splitter import SentenceSplitter
 from ..utils.vector_store import VectorStore
 
@@ -9,10 +10,25 @@ router = APIRouter()
 vector_store = VectorStore()
 sentence_splitter = SentenceSplitter()
 local_model = LocalModel()
+s3_store = S3Store()
 
 
 class TextRequest(BaseModel):
     text: str
+
+
+class S3UploadRequest(BaseModel):
+    text: str
+    file_name: str
+
+
+@router.post("/upload-s3")
+async def upload_to_s3(body: S3UploadRequest):
+    txt = body.text
+    file_name = body.file_name
+    sents = sentence_splitter.split(txt)
+    s3_store.upload_vectors(sents, file_name)
+    return {"Message": "Success"}
 
 
 @router.post("/upload-multiple")

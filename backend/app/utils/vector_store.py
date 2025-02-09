@@ -1,14 +1,14 @@
 from functools import lru_cache
 
 from pinecone import Pinecone, ServerlessSpec
-from sentence_transformers import SentenceTransformer
 
 from .. import config
+from .sentence_embedder import SentenceEmbedder
 
 
 class VectorStore:
     def __init__(self):
-        self.model = SentenceTransformer("all-MiniLM-L6-v2")
+        self.model = SentenceEmbedder()
         self.settings = self.get_settings()
         self.pc = Pinecone(api_key=self.settings.pinecone_api_key)
         self.index_name = "gdsc-project"
@@ -39,7 +39,7 @@ class VectorStore:
         )
 
     def upload_vectors(self, sents: list[str]):
-        vectors = self.model.encode(sents).tolist()
+        vectors = self.model.encode(sents)
         curr_vector_count = self.index.describe_index_stats()["total_vector_count"]
         vector_data = [
             {
@@ -52,7 +52,7 @@ class VectorStore:
         self.upsert_index(vector_data)
 
     def upload_vector(self, text: str):
-        vector = self.model.encode(text).tolist()
+        vector = self.model.encode([text])[0]
         curr_vector_count = (self.index.describe_index_stats())["total_vector_count"]
         new_vector_count = int(curr_vector_count) + 1
         res = [
@@ -65,7 +65,7 @@ class VectorStore:
         self.upsert_index(res)
 
     def retrieve_vectors(self, text: str):
-        query_vector = self.model.encode(text).tolist()
+        query_vector = self.model.encode([text])[0]
         results = self.index.query(
             vector=query_vector,
             top_k=5,
