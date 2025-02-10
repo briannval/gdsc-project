@@ -82,3 +82,11 @@ Start container from image
 ```bash
 docker run --env-file .env -p 8000:8000 gdsc-advising-backend
 ```
+
+## Start entire application
+
+Use Docker Compose
+
+```bash
+docker-compose up
+```
