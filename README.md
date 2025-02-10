@@ -63,3 +63,22 @@ curl -X POST "http://0.0.0.0:8000/db/retrieve" \
      -H "Content-Type: application/json" \
      -d '{"text": "What does computer science at UBC teach?"}'
 ```
+## Backend through Docker
+
+Move to the backend directory
+
+```bash
+  cd backend
+```
+
+Build the image
+
+```bash
+docker build -t gdsc-advising-backend .
+```
+
+Start container from image
+
+```bash
+docker run --env-file .env -p 8000:8000 gdsc-advising-backend
+```
