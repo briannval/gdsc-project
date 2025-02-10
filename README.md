@@ -74,13 +74,13 @@ Move to the backend directory
 Build the image
 
 ```bash
-docker build -t gdsc-advising-backend .
+  docker build -t gdsc-advising-backend .
 ```
 
 Start container from image
 
 ```bash
-docker run --env-file .env -p 8000:8000 gdsc-advising-backend
+  docker run --env-file .env -p 8000:8000 gdsc-advising-backend
 ```
 
 ## Start entire application
@@ -88,5 +88,5 @@ docker run --env-file .env -p 8000:8000 gdsc-advising-backend
 Use Docker Compose
 
 ```bash
-docker-compose up
+  docker-compose up
 ```
