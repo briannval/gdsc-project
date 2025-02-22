@@ -18,7 +18,7 @@ const TestPage = () => {
   };
 
   return (
-    <div className="container">
+    <div className="test-container">
       <div>
         <input type="text" value={value} onChange={onChange}></input>
       </div>

@@ -8,6 +8,8 @@ import {
 import MainPage from "./pages/MainPage";
 import TestPage from "./pages/TestPage";
 
+import "./App.css";
+
 function App() {
   return (
     <Router>
