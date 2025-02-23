@@ -1,17 +1,16 @@
 import json
 from datetime import datetime
-from functools import lru_cache
 
 import boto3
 
-from .. import config
+from . import get_settings
 from .sentence_embedder import SentenceEmbedder
 
 
 class S3Store:
     def __init__(self):
         self.model = SentenceEmbedder()
-        self.settings = self.get_settings()
+        self.settings = get_settings()
         self.s3_client = boto3.client(
             "s3",
             aws_access_key_id=self.settings.aws_access_key,
@@ -19,10 +18,6 @@ class S3Store:
             region_name="us-east-2",
         )
         self.bucket_name = "gdsc-advising"
-
-    @lru_cache()
-    def get_settings(self):
-        return config.Settings()
 
     def upload_to_s3(self, file_name, data):
         file_content = json.dumps(data)
