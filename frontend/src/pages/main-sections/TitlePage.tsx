@@ -18,14 +18,14 @@ const TitlePage = () => {
               textColor="var(--text-color-dark)"
               text="Join the Wailist"
               width="200px"
-              redirect="/about"
+              redirect="#join"
             />
             <CustomButton
               bgColor="var(--pale-blue)"
               textColor="var(--text-color-dark)"
               text="Learn More"
               width="200px"
-              redirect="/test"
+              redirect="#features"
             />
           </div>
         </div>
