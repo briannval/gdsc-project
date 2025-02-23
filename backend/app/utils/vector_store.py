@@ -1,5 +1,3 @@
-from functools import lru_cache
-
 from pinecone import Pinecone, ServerlessSpec
 
 from .. import config
@@ -9,16 +7,12 @@ from .sentence_embedder import SentenceEmbedder
 class VectorStore:
     def __init__(self):
         self.model = SentenceEmbedder()
-        self.settings = self.get_settings()
+        self.settings = config.Settings()
         self.pc = Pinecone(api_key=self.settings.pinecone_api_key)
         self.index_name = "gdsc-project"
         self.namespace_name = "ubc-info"
         self.create_index()
         self.index = self.pc.Index(self.index_name)
-
-    @lru_cache()
-    def get_settings(self):
-        return config.Settings()
 
     def create_index(self):
         try:
