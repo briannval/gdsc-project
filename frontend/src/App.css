@@ -1,15 +1,21 @@
-/* @font-face {
-  font-family: ;
-  src: url() format("truetype");
-} */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 
 :root {
   --background-dark: #012145;
   --background-medium: #215289;
   --background-light: #4083cc;
   --background-white: #ffffff;
+
   --text-color-light: #ffffff;
-  --text-color-dark: #012145;
+  --text-color-dark: #092040;
+
+  --font-size-small: 12px;
+  --font-size-medium: 16px;
+  --font-size-large: 20px;
+  --font-size-xlarge: 24px;
+
+  --pale-blue: #e7edf3;
+  --google-yellow: #fabd05;
 }
 
 body {
@@ -18,6 +24,7 @@ body {
   width: 100vw;
   height: auto;
   margin: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
 html,
