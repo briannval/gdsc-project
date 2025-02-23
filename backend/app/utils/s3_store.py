@@ -1,16 +1,15 @@
 import json
-from datetime import datetime
 
 import boto3
 
-from . import get_settings
+from .. import config
 from .sentence_embedder import SentenceEmbedder
 
 
 class S3Store:
     def __init__(self):
         self.model = SentenceEmbedder()
-        self.settings = get_settings()
+        self.settings = config.Settings()
         self.s3_client = boto3.client(
             "s3",
             aws_access_key_id=self.settings.aws_access_key,
