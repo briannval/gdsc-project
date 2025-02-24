@@ -1,0 +1,150 @@
+.menu-container {
+  display: flex;
+  gap: 48px;
+  padding: 3rem;
+  width: 100%;
+  margin: 2rem auto;
+  box-sizing: border-box;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.menu-item {
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 12px;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.icon {
+  font-size: 24px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #cfd6e5;
+  transition: color 0.3s ease;
+}
+
+.menu-item:hover .title,
+.menu-item.active .title {
+  color: var(--text-color-light);
+}
+
+.menu-item:hover .icon,
+.menu-item.active .icon {
+  opacity: 1;
+}
+
+.subtext-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.subtext-container.open {
+  max-height: 100px;
+  padding-bottom: 16px;
+}
+
+.subtext {
+  font-size: 14px;
+  color: #bcc1ca;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.preview {
+  flex: 1.5;
+  background: var(--pale-blue);
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.calendar-option {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  margin-bottom: 12px;
+}
+
+.calendar-option:last-child {
+  margin-bottom: 0;
+}
+
+.calendar-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+}
+
+.calendar-option span {
+  flex: 1;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+.connect-btn {
+  padding: 8px 16px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.connect-btn:hover {
+  background-color: #2563eb;
+}
+
+.connected {
+  color: #059669 !important;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.connected::before {
+  content: "✓";
+  font-size: 18px;
+}
+
+.placeholder-content {
+  text-align: center;
+  color: #666;
+  padding: 48px 24px;
+}
