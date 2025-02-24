@@ -6,6 +6,10 @@ import FeedbackPage from "./FeedbackPage";
 
 import "./CustomForm.css";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://0.0.0.0";
+const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT || "8000";
+
+
 const CustomForm: React.FC = () => {
   const [page, setPage] = useState(1);
   const [formData, setFormData] = useState({
