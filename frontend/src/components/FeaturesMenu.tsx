@@ -35,8 +35,8 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-export default function CalendarSetup() {
-  const [selectedItem, setSelectedItem] = useState<string>("connect");
+export default function FeaturesMenu() {
+  const [selectedItem, setSelectedItem] = useState<string>("deadlines");
 
   return (
     <div className="menu-container">
