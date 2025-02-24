@@ -1,0 +1,136 @@
+.inputContainer {
+  position: relative;
+  width: 100%;
+  margin: 16px 0 0;
+}
+
+.label {
+  position: absolute;
+  left: 12px;
+  top: -9px;
+  background-color: white;
+  padding: 0 4px;
+  font-size: 14px;
+  color: #666;
+  z-index: 1;
+}
+
+.input {
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.input:focus {
+  border-color: #666;
+}
+
+.input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.textareaContainer {
+  position: relative;
+  width: 100%;
+  margin: 16px 0 0;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 56px;
+  padding: 0 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+
+  outline: none;
+  transition: border-color 0.2s ease;
+  resize: vertical;
+}
+
+.textarea:focus {
+  border-color: #666;
+}
+
+.formPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 1rem;
+}
+
+.nextButton,
+.prevButton,
+.submitButton {
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nextButton,
+.submitButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.nextButton:hover,
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+.prevButton {
+  background-color: #6c757d;
+  color: white;
+}
+
+.prevButton:hover {
+  background-color: #5a6268;
+}
+
+.nextButton:focus,
+.prevButton:focus,
+.submitButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+.submitButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
