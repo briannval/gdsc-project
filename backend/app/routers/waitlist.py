@@ -14,8 +14,9 @@ class WaitlistRequest(BaseModel):
     faculty: str
     year: int
     major: str
-    annoying_curr_advising: str
-    fix_to_advising: str
+    annoyance: str
+    improvement: str
+    survey: str
 
 
 @router.get("/fetch")
