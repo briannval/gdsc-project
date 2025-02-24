@@ -5,6 +5,7 @@ import FeaturesPage from "./main-sections/FeaturesPage";
 import HIWPage from "./main-sections/HIWPage";
 import JoinPage from "./main-sections/JoinPage";
 import AboutPage from "./main-sections/AboutPage";
+import Footer from "../components/Footer";
 
 import "./MainPage.css";
 
@@ -41,7 +42,7 @@ const MainPage = () => {
             const el = document.getElementById(section.id);
             if (el) {
               const top = el.getBoundingClientRect().top;
-              if (top <= window.innerHeight * 0.9) {
+              if (top <= window.innerHeight * 0.8) {
                 newColor = section.color;
               }
             }
@@ -77,6 +78,7 @@ const MainPage = () => {
       <section id="about">
         <AboutPage />
       </section>
+      <Footer />
     </>
   );
 };
