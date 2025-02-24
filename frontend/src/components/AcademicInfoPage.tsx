@@ -6,7 +6,7 @@ import "./CustomForm.css";
 interface AcademicInfoPageProps {
   formData: {
     faculty: string;
-    year: string;
+    year: number;
     major: string;
   };
   handleChange: (
