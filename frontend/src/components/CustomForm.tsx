@@ -20,6 +20,8 @@ const CustomForm: React.FC = () => {
     survey: "",
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -35,10 +37,30 @@ const CustomForm: React.FC = () => {
   const nextPage = () => setPage((prev) => Math.min(prev + 1, 3));
   const prevPage = () => setPage((prev) => Math.max(prev - 1, 1));
 
+  const resetForm = () => {
+    setPage(1);
+    setFormData({
+      name: "",
+      email: "",
+      gender: "",
+      faculty: "",
+      year: "",
+      major: "",
+      annoyance: "",
+      improvement: "",
+      survey: "",
+    });
+    setIsSubmitted(false);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
     // Here you would typically send the data to a server
+    setIsSubmitted(true);
+    setTimeout(() => {
+      resetForm();
+    }, 1000);
   };
 
   return (

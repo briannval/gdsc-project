@@ -6,7 +6,9 @@ import CustomForm from "../../components/CustomForm";
 const JoinPage = () => {
   return (
     <div className="join-container">
-      <div className="join-column">HI</div>
+      <div className="join-column">
+        <div className="gdsc-logo"></div>
+      </div>
       <div className="join-column">
         <h1 className="heading-text">Convinced?</h1>
         <h2 className="subheading-text">
