@@ -3,8 +3,14 @@ import { useState } from "react";
 import PersonalInfoPage from "./PersonalInfoPage";
 import AcademicInfoPage from "./AcademicInfoPage";
 import FeedbackPage from "./FeedbackPage";
+import axios from "axios";
 
 import "./CustomForm.css";
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://0.0.0.0";
+const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT || "8000";
+
+const API_ENDPOINT = `${BACKEND_URL}:${BACKEND_PORT}/waitlist/insert`;
 
 const CustomForm: React.FC = () => {
   const [page, setPage] = useState(1);
@@ -13,7 +19,7 @@ const CustomForm: React.FC = () => {
     email: "",
     gender: "",
     faculty: "",
-    year: "",
+    year: 0,
     major: "",
     annoyance: "",
     improvement: "",
@@ -44,7 +50,7 @@ const CustomForm: React.FC = () => {
       email: "",
       gender: "",
       faculty: "",
-      year: "",
+      year: 0,
       major: "",
       annoyance: "",
       improvement: "",
@@ -53,10 +59,15 @@ const CustomForm: React.FC = () => {
     setIsSubmitted(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Here you would typically send the data to a server
+    try {
+      const response = await axios.post(API_ENDPOINT, formData);
+      console.log("Success:", response.data);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
     setIsSubmitted(true);
     setTimeout(() => {
       resetForm();
