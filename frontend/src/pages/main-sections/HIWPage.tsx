@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./HIWPage.css";
 import UserGuide from "../../components/UserGuide";
 
