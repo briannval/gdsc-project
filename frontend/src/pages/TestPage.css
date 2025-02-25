@@ -1,4 +1,4 @@
-body {
+/* body {
   background-color: #030b07;
 }
 
@@ -11,7 +11,7 @@ input {
   font-size: 1.2em;
 }
 
-/* button {
+button {
   width: 100%;
   padding: 1em;
   background-color: #007200;
@@ -22,11 +22,11 @@ input {
   transition: background-color 0.3s ease-in-out;
   font-size: 1.2em;
   box-shadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.1);
-} */
+}
 
-/* button:hover {
+button:hover {
   background-color: #008a00;
-} */
+}
 
 p {
   margin-top: 1em;
@@ -44,4 +44,4 @@ p {
   padding: 2em;
   border-radius: 0.5em;
   background-color: #e0e0e0;
-}
+} */

@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 
 import MainPage from "./pages/MainPage";
-import TestPage from "./pages/TestPage";
+// import TestPage from "./pages/TestPage";
 
 import "./App.css";
 
@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/test" element={<TestPage />} />
+        {/* <Route path="/test" element={<TestPage />} /> */}
       </Routes>
     </Router>
   );
