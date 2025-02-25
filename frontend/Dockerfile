@@ -1,4 +1,4 @@
-FROM node:20-alpine as vbuild
+FROM node:20-alpine AS vbuild
 
 WORKDIR /app
 
@@ -10,12 +10,12 @@ COPY . .
 
 RUN npm run build
 
-FROM nginx:alpine
+FROM nginx:stable-alpine
+
+COPY --from=vbuild /app/nginx /etc/nginx/conf.d
 
 COPY --from=vbuild /app/dist /usr/share/nginx/html
 
-COPY nginx.conf /etc/nginx/nginx.conf
-
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./JoinPage.css";
 import CustomForm from "../../components/CustomForm";
 

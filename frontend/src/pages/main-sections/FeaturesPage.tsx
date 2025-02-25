@@ -1,5 +1,3 @@
-import React from "react";
-
 import FeaturesMenu from "../../components/FeaturesMenu";
 
 const FeaturesPage = () => {

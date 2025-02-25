@@ -2,7 +2,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  BrowserRouter,
 } from "react-router-dom";
 
 import MainPage from "./pages/MainPage";
