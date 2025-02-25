@@ -14,7 +14,7 @@
 .label {
   display: inline-block;
   background-color: white;
-  padding: 0 4px;
+  padding-right: 2px;
   font-size: 14px;
   color: #666;
   z-index: 1;
@@ -24,11 +24,9 @@
   display: inline-block;
   background-color: white;
   font-size: 14px;
-  margin-left: 10px;
-  padding-left: 4px;
   padding-right: 4px;
   font-style: italic;
-  color: #999;
+  color: #f00;
   z-index: 1;
 }
 
