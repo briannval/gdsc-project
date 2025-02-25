@@ -53,8 +53,7 @@ jobs:
               run: |
                 gcloud builds submit \
                   --tag ${{ env.GCLOUD_REGISTRY }}/${{ env.GCLOUD_PROJECT_ID }}/${{ env.GCLOUD_ARTIFACT_REPO }}/${{ env.GCLOUD_IMAGE_NAME }}:latest \
-                  --region ${{ env.GCLOUD_REGION }} \
-                  --no-stream
+                  --region ${{ env.GCLOUD_REGION }}
 
             - name: Deploy to Cloud Run
               run: |
