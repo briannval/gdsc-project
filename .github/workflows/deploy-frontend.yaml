@@ -8,6 +8,11 @@ on:
         paths:
             - frontend/**
 
+env:
+    VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
+    VITE_BACKEND_PORT: ${{ secrets.VITE_BACKEND_PORT }}
+    GCLOUD_REGION: us-central1
+
 jobs:
     deploy-fe:
         name: deploy-fe  
@@ -24,8 +29,8 @@ jobs:
             
             - name: Update .env file with secrets
               run: |
-                  echo "VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" >> .env
-                  echo "VITE_BACKEND_PORT=${{ secrets.VITE_BACKEND_PORT }}" >> .env
+                  echo "VITE_BACKEND_URL=${{ env.VITE_BACKEND_URL }}" >> .env
+                  echo "VITE_BACKEND_PORT=${{ env.VITE_BACKEND_PORT }}" >> .env
             
             - name: Verify .env file
               run: ls -l .env
