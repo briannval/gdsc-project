@@ -6,14 +6,15 @@
 
 .labelContainer {
   left: 12px;
-  top: -11px;
+  top: -10px;
   position: absolute;
   display: inline-block;
+  background-color: white;
+  padding-left: 4px;
 }
 
 .label {
   display: inline-block;
-  background-color: white;
   padding-right: 2px;
   font-size: 14px;
   color: #666;
@@ -22,7 +23,6 @@
 
 .required {
   display: inline-block;
-  background-color: white;
   font-size: 14px;
   padding-right: 4px;
   font-style: italic;
