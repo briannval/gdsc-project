@@ -39,24 +39,24 @@ jobs:
             - name: Verify .env file
               run: ls -l .env
             
-            - name: Authenticate with Google Cloud (main only)
+            - name: Authenticate with Google Cloud
               uses: google-github-actions/auth@v2
               with:
                 credentials_json: ${{ secrets.GCLOUD_AUTH }}
 
-            - name: Set up Google Cloud SDK (main only)
+            - name: Set up Google Cloud SDK
               uses: google-github-actions/setup-gcloud@v2
               with:
                 project_id: gdsc-advising
 
-            - name: Build and Push with Cloud Build (main only)
+            - name: Build and Push with Cloud Build
               run: |
                 gcloud builds submit \
                   --tag ${{ env.GCLOUD_REGISTRY }}/${{ env.GCLOUD_PROJECT_ID }}/${{ env.GCLOUD_ARTIFACT_REPO }}/${{ env.GCLOUD_IMAGE_NAME }}:latest \
                   --region ${{ env.GCLOUD_REGION }} \
                   --no-stream
 
-            - name: Deploy to Cloud Run (main only)
+            - name: Deploy to Cloud Run
               run: |
                 gcloud run deploy ${{ env.GCLOUD_IMAGE_NAME }} \
                   --image ${{ env.GCLOUD_REGISTRY }}/${{ env.GCLOUD_PROJECT_ID }}/${{ env.GCLOUD_ARTIFACT_REPO }}/${{ env.GCLOUD_IMAGE_NAME }}:latest \
