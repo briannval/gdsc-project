@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 
+import { ToastContainer } from "react-toastify";
 import TitlePage from "./main-sections/TitlePage";
 import FeaturesPage from "./main-sections/FeaturesPage";
 import HIWPage from "./main-sections/HIWPage";
@@ -65,6 +66,18 @@ const MainPage = () => {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <TitlePage />
       <section id="features">
         <FeaturesPage />

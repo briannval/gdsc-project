@@ -4,6 +4,7 @@ import PersonalInfoPage from "./PersonalInfoPage";
 import AcademicInfoPage from "./AcademicInfoPage";
 import FeedbackPage from "./FeedbackPage";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import "./CustomForm.css";
 
@@ -64,8 +65,28 @@ const CustomForm: React.FC = () => {
     console.log("Form submitted:", formData);
     try {
       const response = await axios.post(API_ENDPOINT, formData);
+      toast.success('Form submitted successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       console.log("Success:", response.data);
     } catch (error) {
+      toast.error('Looks like something went wrong. Try again!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       console.error("Error submitting form:", error);
     }
     setIsSubmitted(true);

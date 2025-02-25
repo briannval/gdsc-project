@@ -1,5 +1,5 @@
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
-import "./footer.css";
+import "./Footer.css";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -20,7 +20,7 @@ export default function Footer() {
             <FaFacebookF />
           </a>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/gdscubc/"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
