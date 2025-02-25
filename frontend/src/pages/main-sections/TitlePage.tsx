@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./TitlePage.css";
 import CustomButton from "../../components/CustomButton";
 

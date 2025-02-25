@@ -27,7 +27,7 @@ const CustomForm: React.FC = () => {
     survey: "",
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [_, setIsSubmitted] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<
