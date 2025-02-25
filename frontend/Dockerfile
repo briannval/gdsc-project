@@ -16,6 +16,6 @@ COPY --from=vbuild /app/nginx /etc/nginx/conf.d
 
 COPY --from=vbuild /app/dist /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE 8080
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
