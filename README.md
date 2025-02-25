@@ -16,6 +16,33 @@ Pull the required Mistral model
 ```
 
 Mistral should be accessible at port **11434** now through Ollama locally.
+
+## Frontend setup
+
+Move to the frontend directory
+
+```bash
+  cd frontend
+```
+
+Make sure npm is installed
+
+```bash
+  npm -v
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Run development server
+
+```bash
+  npm run dev
+```
+
 ## Backend setup
 
 Move to the backend directory
