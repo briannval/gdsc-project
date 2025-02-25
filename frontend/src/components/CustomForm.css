@@ -4,14 +4,31 @@
   margin: 16px 0 0;
 }
 
-.label {
-  position: absolute;
+.labelContainer {
   left: 12px;
-  top: -9px;
+  top: -11px;
+  position: absolute;
+  display: inline-block;
+}
+
+.label {
+  display: inline-block;
   background-color: white;
   padding: 0 4px;
   font-size: 14px;
   color: #666;
+  z-index: 1;
+}
+
+.required {
+  display: inline-block;
+  background-color: white;
+  font-size: 14px;
+  margin-left: 10px;
+  padding-left: 4px;
+  padding-right: 4px;
+  font-style: italic;
+  color: #999;
   z-index: 1;
 }
 

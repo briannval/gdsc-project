@@ -13,6 +13,22 @@ const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT || "8000";
 
 const API_ENDPOINT = `${BACKEND_URL}:${BACKEND_PORT}/waitlist/insert`;
 
+// this for indexing (can be sorta ignored)
+type FormData = {[key: string]: string | number; };
+const requiredFormFields: string[] = ["name", "email", "faculty", "year", "major", "gender", "survey"];
+
+// settings for pop ups
+const toastSettings = {
+  position: "top-right",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: false,
+  pauseOnHover: false,
+  draggable: true,
+  progress: undefined,
+  theme: "colored",
+};
+
 const CustomForm: React.FC = () => {
   const [page, setPage] = useState(1);
   const [formData, setFormData] = useState({
@@ -62,31 +78,25 @@ const CustomForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log("Form data:", formData);
+
+    // have to cast it so i can index it with string arr (some goofy stuff)
+    const castedFormData : FormData = (formData as FormData);
+    for(const field of requiredFormFields){
+      // check if field is empty
+      if(!castedFormData[field]){
+        console.log("Missing ", field," field");
+        toast.warning(`You are missing a required field`, (toastSettings as any));
+        return;
+      }
+    }
+    
     try {
       const response = await axios.post(API_ENDPOINT, formData);
-      toast.success('Form submitted successfully!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.success('Form submitted successfully!', (toastSettings as any));
       console.log("Success:", response.data);
     } catch (error) {
-      toast.error('Looks like something went wrong. Try again!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.error('Looks like something went wrong. Try again!', (toastSettings as any));
       console.error("Error submitting form:", error);
     }
     setIsSubmitted(true);

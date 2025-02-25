@@ -16,7 +16,10 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 }) => {
   return (
     <div className="inputContainer">
-      <label className="label">{label}</label>
+      <div className="labelContainer">
+        <label className="label">{label}</label>
+        <label className="required">{props.required ? "Required" : ""}</label>
+      </div>
       <select className={`input select ${className}`} {...props}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>

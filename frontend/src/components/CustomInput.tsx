@@ -15,7 +15,10 @@ const CustomInput: React.FC<CustomInputProps> = ({
 }) => {
   return (
     <div className="inputContainer">
-      <label className="label">{label}</label>
+      <div className="labelContainer">
+        <label className="label">{label}</label>
+        <label className="required">{props.required ? "Required" : ""}</label>
+      </div>
       <input
         className={`input ${className}`}
         placeholder={placeholder}
