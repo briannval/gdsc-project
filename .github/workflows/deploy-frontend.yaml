@@ -1,0 +1,67 @@
+name: Deploy frontend to Cloud Run
+
+on:
+    push:
+        branches:
+            - main # on push to main
+            - feature/ci-cd # on testing for ci-cd
+        paths:
+            - frontend/**
+
+env:
+    VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
+    VITE_BACKEND_PORT: ${{ secrets.VITE_BACKEND_PORT }}
+    GCLOUD_REGION: us-central1
+    GCLOUD_REGISTRY: ${{ secrets.GCLOUD_REGISTRY }}
+    GCLOUD_PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
+    GCLOUD_ARTIFACT_REPO: ${{ secrets.GCLOUD_ARTIFACT_REPO }}
+    GCLOUD_IMAGE_NAME: gdsc-advising-frontend
+
+jobs:
+    deploy-fe:
+        name: deploy-fe  
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./frontend # change dir to frontend
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Create .env file
+              run: touch .env
+            
+            - name: Update .env file with secrets
+              run: |
+                  echo "VITE_BACKEND_URL=${{ env.VITE_BACKEND_URL }}" >> .env
+                  echo "VITE_BACKEND_PORT=${{ env.VITE_BACKEND_PORT }}" >> .env
+            
+            - name: Verify .env file
+              run: ls -l .env
+            
+            - name: Authenticate with Google Cloud
+              uses: google-github-actions/auth@v2
+              with:
+                credentials_json: ${{ secrets.GCLOUD_AUTH }}
+
+            - name: Set up Google Cloud SDK
+              uses: google-github-actions/setup-gcloud@v2
+              with:
+                project_id: gdsc-advising
+
+            - name: Build and Push with Cloud Build
+              run: |
+                gcloud builds submit \
+                  --tag ${{ env.GCLOUD_REGISTRY }}/${{ env.GCLOUD_PROJECT_ID }}/${{ env.GCLOUD_ARTIFACT_REPO }}/${{ env.GCLOUD_IMAGE_NAME }}:latest \
+                  --region ${{ env.GCLOUD_REGION }}
+
+            - name: Deploy to Cloud Run
+              run: |
+                gcloud run deploy ${{ env.GCLOUD_IMAGE_NAME }} \
+                  --image ${{ env.GCLOUD_REGISTRY }}/${{ env.GCLOUD_PROJECT_ID }}/${{ env.GCLOUD_ARTIFACT_REPO }}/${{ env.GCLOUD_IMAGE_NAME }}:latest \
+                  --region ${{ env.GCLOUD_REGION }} \
+                  --platform managed \
+                  --allow-unauthenticated
+
+            - name: Success
+              run: echo "Success"
