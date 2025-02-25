@@ -14,7 +14,7 @@ const TitlePage = () => {
             <CustomButton
               bgColor="var(--google-yellow)"
               textColor="var(--text-color-dark)"
-              text="Join the Wailist"
+              text="Join the Waitlist"
               width="200px"
               redirect="#join"
             />
