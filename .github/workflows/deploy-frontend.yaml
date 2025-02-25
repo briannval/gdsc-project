@@ -1,0 +1,23 @@
+name: Deploy frontend to Cloud Run
+
+on:
+    push:
+        branches:
+            - main # on push to main
+            - feature/ci-cd # on testing for ci-cd
+        paths:
+            - frontend/**
+
+jobs:
+    deploy-fe:
+        name: deploy-fe  
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./frontend # change dir to frontend
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Success
+              uses: echo "Success"
