@@ -29,21 +29,21 @@ const AboutPage = () => {
         <h1 className="subheading-text">We Connect, Learn, & Grow.</h1>
       </div>
       <Carousel slides={slides} />
-      <div className="description">
+      <div className="about-description">
         The Google Developer Student Club (GDSC) at UBC is a student-led
         community dedicated to helping students grow their technical and
         professional skills. Supported by Google, we aim to bridge the gap
         between academia and industry by providing resources, mentorship, and
         opportunities to collaborate on real-world projects.
       </div>
-      <div className="description">
+      <div className="about-description">
         Our goal is to create an inclusive environment where students from all
         backgrounds can explore technology, develop problem-solving skills, and
         connect with like-minded peers. Whether you're looking to learn
         something new, work on impactful projects, or build a strong network,
         GDSC UBC provides the support to help you succeed.
       </div>
-      <div className="description">
+      <div className="about-description">
         Join us to be part of a community that encourages learning, innovation,
         and personal growth.
       </div>

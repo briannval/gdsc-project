@@ -1,5 +1,8 @@
 import React from "react";
 
+import "./HIWPage.css";
+import UserGuide from "../../components/UserGuide";
+
 const HIWPage = () => {
   return (
     <div className="container">
@@ -9,6 +12,7 @@ const HIWPage = () => {
           Easily Navigate UBC's Systems with AI-Powered Insights
         </h1>
       </div>
+      <UserGuide />
     </div>
   );
 };
