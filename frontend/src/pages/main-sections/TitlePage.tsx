@@ -15,14 +15,12 @@ const TitlePage = () => {
               bgColor="var(--google-yellow)"
               textColor="var(--text-color-dark)"
               text="Join the Waitlist"
-              width="200px"
               redirect="#join"
             />
             <CustomButton
               bgColor="var(--pale-blue)"
               textColor="var(--text-color-dark)"
               text="Learn More"
-              width="200px"
               redirect="#features"
             />
           </div>

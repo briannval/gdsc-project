@@ -1,11 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import "./CustomButton.css";
+
 interface CustomButtonProps {
   bgColor: string;
   textColor: string;
   text: string;
-  width: string;
   redirect: string;
 }
 
@@ -13,7 +14,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   bgColor,
   textColor,
   text,
-  width,
   redirect,
 }) => {
   const navigate = useNavigate();
@@ -35,14 +35,8 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       style={{
         backgroundColor: bgColor,
         color: textColor,
-        width: width,
-        padding: "12px 20px",
-        border: "none",
-        borderRadius: "5px",
-        cursor: "pointer",
-        fontSize: "18px",
-        fontWeight: "bold",
       }}
+      className="custom-button"
     >
       {text}
     </button>

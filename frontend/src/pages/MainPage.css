@@ -12,18 +12,19 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 0 2rem;
 }
 
 .heading-text {
-  font-size: 72px;
+  font-size: 42px;
   margin: 0;
   font-weight: bold;
 }
 
 .subheading-text {
   font-weight: normal;
-  font-size: 22px;
-  margin: 0;
+  font-size: 18px;
+  margin: 4px 0 0;
 }
 
 .section-heading-centre {
@@ -36,4 +37,13 @@ body {
   text-align: left;
   margin-top: 4rem;
   width: 100%;
+}
+
+@media (min-width: 650px) {
+  .heading-text {
+    font-size: 72px;
+  }
+  .subheading-text {
+    font-size: 22px;
+  }
 }

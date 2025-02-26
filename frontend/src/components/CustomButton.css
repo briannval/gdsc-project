@@ -1,0 +1,17 @@
+.custom-button {
+  width: 160px;
+  padding: 12px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+@media (min-width: 650px) {
+  .custom-button {
+    width: 200px;
+    padding: 12px 20px;
+    font-size: 18px;
+  }
+}

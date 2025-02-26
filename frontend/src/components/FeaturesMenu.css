@@ -1,7 +1,7 @@
 .menu-container {
   display: flex;
-  gap: 48px;
-  padding: 3rem;
+  flex-direction: column;
+  gap: 1.5rem;
   width: 100%;
   margin: 2rem auto;
   box-sizing: border-box;
@@ -10,7 +10,6 @@
 .menu {
   display: flex;
   flex-direction: column;
-  width: 50%;
 }
 
 .menu-item {
@@ -147,4 +146,15 @@
   text-align: center;
   color: #666;
   padding: 48px 24px;
+}
+
+@media (min-width: 768px) {
+  .menu-container {
+    flex-direction: row;
+    gap: 3rem;
+    padding: 3rem;
+  }
+  .menu {
+    width: 50%;
+  }
 }
