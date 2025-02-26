@@ -10,7 +10,6 @@ on:
 
 env:
     VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
-    VITE_BACKEND_PORT: ${{ secrets.VITE_BACKEND_PORT }}
     GCLOUD_REGION: us-central1
     GCLOUD_REGISTRY: ${{ secrets.GCLOUD_REGISTRY }}
     GCLOUD_PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
@@ -34,7 +33,6 @@ jobs:
             - name: Update .env file with secrets
               run: |
                   echo "VITE_BACKEND_URL=${{ env.VITE_BACKEND_URL }}" >> .env
-                  echo "VITE_BACKEND_PORT=${{ env.VITE_BACKEND_PORT }}" >> .env
             
             - name: Verify .env file
               run: ls -l .env
