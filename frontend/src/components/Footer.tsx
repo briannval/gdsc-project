@@ -1,4 +1,4 @@
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedin } from "react-icons/fa";
 import "./Footer.css";
 
 export default function Footer() {
@@ -12,12 +12,12 @@ export default function Footer() {
         </div>
         <div className="social-icons">
           <a
-            href="https://facebook.com"
+            href="https://www.linkedin.com/company/gdsc-ubc/"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
           >
-            <FaFacebookF />
+            <FaLinkedin />
           </a>
           <a
             href="https://www.instagram.com/gdscubc/"
@@ -28,12 +28,12 @@ export default function Footer() {
             <FaInstagram />
           </a>
           <a
-            href="https://twitter.com"
+            href="https://www.facebook.com/dscubc/"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
           >
-            <FaTwitter />
+            <FaFacebookF />
           </a>
         </div>
       </div>
