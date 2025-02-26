@@ -4,10 +4,21 @@ services:
   backend:
     build:
       context: ./backend
-    container_name: gdsc_advising_backend
-    image: gdsc_advising-backend
+    container_name: gdsc-advising-backend
+    image: gdsc-advising-backend
     restart: always
     ports:
       - "8000:8000"
     env_file:
       - ./backend/.env
+    
+  frontend:
+    build:
+      context: ./frontend
+    container_name: gdsc-advising-frontend
+    image: gdsc-advising-frontend
+    restart: always
+    ports:
+      - "3000:8080"
+    env_file:
+      - ./frontend/.env
