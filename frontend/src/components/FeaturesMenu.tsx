@@ -76,14 +76,15 @@ export default function FeaturesMenu() {
                 What is the due date for tuition payments?
               </div>
               <div className="question">
-                How long do I have to withdraw from a course without it affecting my GPA?
+                How long do I have to withdraw from a course without it
+                affecting my GPA?
               </div>
             </>
           )}
           {selectedItem === "course-guidance" && (
             <>
               <div className="question">
-                What are teh second year required courses for Computer Science?
+                What are the second year required courses for Computer Science?
               </div>
               <div className="question">
                 What are the prerequisites for CPSC 210?
@@ -98,9 +99,7 @@ export default function FeaturesMenu() {
           )}
           {selectedItem === "news" && (
             <>
-              <div className="question">
-                Is tomorrow a snow day?
-              </div>
+              <div className="question">Is tomorrow a snow day?</div>
               <div className="question">
                 What are the upcoming career fairs on campus?
               </div>
@@ -115,11 +114,10 @@ export default function FeaturesMenu() {
           {selectedItem === "ai-chat" && (
             <>
               <div className="question">
-                See frequently asked questions by other students to save even more time
+                See frequently asked questions by other students to save even
+                more time
               </div>
-              <div className="question">
-                Where do I declare my major?
-              </div>
+              <div className="question">Where do I declare my major?</div>
               <div className="question">
                 Where to check my transfer credits?
               </div>
