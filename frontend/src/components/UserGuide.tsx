@@ -18,7 +18,7 @@ const features: UserGuide[] = [
     details:
       "Our AI-powered search engine understands both simple and complex academic queries. Whether you're looking for deadlines, program details, or housing info, you'll get the most accurate and up-to-date answers in seconds.",
     image:
-      "https://images.unsplash.com/photo-1740007124901-6644ebaa3c08?q=80&w=3086&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1591522811280-a8759970b03f?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     number: "2",
@@ -28,7 +28,7 @@ const features: UserGuide[] = [
     details:
       "Our system uses web scraping and an LLM trained on UBC data to provide precise, well-structured responses. You’ll see key information at a glance, with links to official sources if you want to read further.",
     image:
-      "https://images.unsplash.com/photo-1740007124901-6644ebaa3c08?q=80&w=3086&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1725985758385-d5462d6e7f50?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     number: "3",
@@ -38,7 +38,7 @@ const features: UserGuide[] = [
     details:
       "Our platform not only provides raw information but also helps you compare options. Get feasibility insights, workload expectations, and career impact analysis—all tailored to your needs.",
     image:
-      "https://images.unsplash.com/photo-1740007124901-6644ebaa3c08?q=80&w=3086&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1580893246395-52aead8960dc?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     number: "4",
@@ -48,7 +48,7 @@ const features: UserGuide[] = [
     details:
       "We regularly update our data by scraping official UBC sources, ensuring you always get the most recent and accurate information about academics, housing, and fees.",
     image:
-      "https://images.unsplash.com/photo-1740007124901-6644ebaa3c08?q=80&w=3086&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1633526543814-9718c8922b7a?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
