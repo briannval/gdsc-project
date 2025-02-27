@@ -77,7 +77,6 @@ const MainPage = () => {
     <div
       style={{
         backgroundColor: getBackgroundColor(),
-        transition: "background-color 0.4s ease",
       }}
     >
       <ToastContainer
