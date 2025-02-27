@@ -2,6 +2,7 @@ import Carousel from "../../components/Carousel";
 
 import "./AboutPage.css";
 import sweet_img from "../../assets/SWEet-11.jpg";
+import devfest_img from "../../assets/gdsc-devfest.jpg";
 
 const AboutPage = () => {
   const slides = [
@@ -10,14 +11,8 @@ const AboutPage = () => {
       caption: "Secure That SWEet Internship Event",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1740007124901-6644ebaa3c08?q=80&w=3086&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      caption: "Image Caption 2",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1740007124901-6644ebaa3c08?q=80&w=3086&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      caption: "Image Caption 3",
+      image: devfest_img,
+      caption: "DevFest Event",
     },
   ];
 

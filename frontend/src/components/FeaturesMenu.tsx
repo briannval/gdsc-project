@@ -22,14 +22,14 @@ const menuItems: MenuItem[] = [
     icon: "📖",
   },
   {
-    id: "financial",
-    title: "Navigate financial details",
-    subtext: "Understand tuition, fees, and financial aid options.",
-    icon: "💰",
+    id: "news",
+    title: "Stay in the loop with campus news",
+    subtext: "See whats new on campus and don't miss out any events.",
+    icon: "📰",
   },
   {
     id: "ai-chat",
-    title: "Chat with personalized AI",
+    title: "Get instant answers to your questions",
     subtext: "Get instant help and support from an AI assistant.",
     icon: "🤖",
   },
@@ -65,25 +65,68 @@ export default function FeaturesMenu() {
       <div className="preview">
         <div className="preview-card">
           {selectedItem === "deadlines" && (
-            <div className="placeholder-content">
-              Set your weekly hours and timezone preferences here
-            </div>
+            <>
+              <div className="question">
+                When is the last day to add or drop a course this semester?
+              </div>
+              <div className="question">
+                What's the application deadline for science co-op application?
+              </div>
+              <div className="question">
+                What is the due date for tuition payments?
+              </div>
+              <div className="question">
+                How long do I have to withdraw from a course without it affecting my GPA?
+              </div>
+            </>
           )}
           {selectedItem === "course-guidance" && (
-            <div className="placeholder-content">
-              Set your weekly hours and timezone preferences here
-            </div>
+            <>
+              <div className="question">
+                What are teh second year required courses for Computer Science?
+              </div>
+              <div className="question">
+                What are the prerequisites for CPSC 210?
+              </div>
+              <div className="question">
+                When does course registration open for this year?
+              </div>
+              <div className="question">
+                Show me all required courses for Computer Science major
+              </div>
+            </>
           )}
-          {selectedItem === "financial" && (
-            <div className="placeholder-content">
-              Connect your video conferencing tools like Zoom, Teams, or Google
-              Meet
-            </div>
+          {selectedItem === "news" && (
+            <>
+              <div className="question">
+                Is tomorrow a snow day?
+              </div>
+              <div className="question">
+                What are the upcoming career fairs on campus?
+              </div>
+              <div className="question">
+                What are the recent news on campus?
+              </div>
+              <div className="question">
+                What sport games are happening on campus this weekend?
+              </div>
+            </>
           )}
           {selectedItem === "ai-chat" && (
-            <div className="placeholder-content">
-              Create and customize different types of events
-            </div>
+            <>
+              <div className="question">
+                See frequently asked questions by other students to save even more time
+              </div>
+              <div className="question">
+                Where do I declare my major?
+              </div>
+              <div className="question">
+                Where to check my transfer credits?
+              </div>
+              <div className="question">
+                How do I request my official transcript?
+              </div>
+            </>
           )}
         </div>
       </div>

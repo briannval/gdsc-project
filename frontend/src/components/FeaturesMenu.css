@@ -71,25 +71,6 @@
   text-align: left;
 }
 
-.preview {
-  flex: 1.5;
-  background: var(--pale-blue);
-  border-radius: 24px;
-  padding: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.preview-card {
-  background: white;
-  border-radius: 16px;
-  padding: 24px;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-}
-
 .calendar-option {
   display: flex;
   align-items: center;
@@ -146,6 +127,35 @@
   text-align: center;
   color: #666;
   padding: 48px 24px;
+}
+
+
+
+.preview {
+  width: 50%;
+  background: var(--pale-blue);
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.question {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  text-align: left;
+  color: #666;
 }
 
 @media (min-width: 768px) {
