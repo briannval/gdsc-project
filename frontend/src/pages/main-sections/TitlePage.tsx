@@ -6,7 +6,7 @@ const TitlePage = () => {
     <div className="title-bg">
       <div className="container">
         <div className="landing-content">
-          <h1 className="heading-text">UBC Navigator</h1>
+          <h1 className="heading-text">UBC Advising Made Easy</h1>
           <h2 className="subheading-text">
             Your AI-powered guide to UBC academics, housing, and fees.
           </h2>
