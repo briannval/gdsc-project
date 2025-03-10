@@ -1,5 +1,4 @@
 import logging
-import os
 import threading
 import time
 
@@ -9,7 +8,7 @@ from flask_cors import CORS
 from routes.base import base_bp
 from routes.mock import mock_bp
 from routes.mq import mq_bp
-from utils.scraper import scrape
+from utils.scraper import scrape_util
 
 logging.basicConfig(level=logging.INFO)
 
@@ -45,9 +44,10 @@ def produce(res_id):
 
 
 def callback(ch, method, properties, body):
-    scrape(body.decode())
-    time.sleep(5)  # simulate scraping
-    produce(1)
+    print(f"Scraper received message from {CONSUME_QUEUE}: {body.decode()}")
+    time.sleep(2)  # simulate scraping
+    produce(str(1))
+    print("Scraper signalling processor")
 
 
 def consume():
@@ -62,4 +62,7 @@ def consume():
 
 if __name__ == "__main__":
     (threading.Thread(target=consume, daemon=True)).start()
-    app.run(debug=True)
+    try:
+        app.run(debug=True)
+    except:
+        app.run(debug=True, port=5001)

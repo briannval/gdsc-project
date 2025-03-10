@@ -19,7 +19,7 @@ class MQClient:
         self.channel.queue_declare(queue="scrape_request")
 
     def callback(self, ch, method, properties, body):
-        print(f"Received message from {method.routing_key}: {body.decode()}")
+        print(f"Backend received message from {method.routing_key}: {body.decode()}")
 
     def consume(self, queue):
         self.channel.basic_consume(

@@ -15,4 +15,5 @@ class ScrapeRequest(BaseModel):
 async def scrape_request(body: ScrapeRequest):
     scrape_url = body.url
     mqclient.publish("scrape_request", scrape_url)
+    print("Backend signalling scraper")
     return {"Message": scrape_url}
