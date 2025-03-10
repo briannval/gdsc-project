@@ -1,6 +1,7 @@
 import logging
 import os
 import threading
+import time
 
 import pika
 from flask import Flask
@@ -12,6 +13,8 @@ from utils.scraper import scrape
 
 logging.basicConfig(level=logging.INFO)
 
+CONSUME_QUEUE = "scrape_request"
+PRODUCE_QUEUE = "scrape_process"
 
 app = Flask(__name__)
 app.register_blueprint(base_bp)
@@ -28,8 +31,8 @@ rabbitmq_connection = pika.BlockingConnection(
     )
 )
 rabbitmq_channel = rabbitmq_connection.channel()
-rabbitmq_channel.queue_declare("scrape_request")
-rabbitmq_channel.queue_declare("scrape_process")
+rabbitmq_channel.queue_declare(CONSUME_QUEUE)
+rabbitmq_channel.queue_declare(PRODUCE_QUEUE)
 
 
 @app.route("/")
@@ -37,13 +40,19 @@ def home():
     return "Hello, World!"
 
 
+def produce(res_id):
+    rabbitmq_channel.basic_publish(exchange="", routing_key=PRODUCE_QUEUE, body=res_id)
+
+
 def callback(ch, method, properties, body):
     scrape(body.decode())
+    time.sleep(5)  # simulate scraping
+    produce(1)
 
 
 def consume():
     rabbitmq_channel.basic_consume(
-        queue="scrape_request",
+        queue=CONSUME_QUEUE,
         on_message_callback=callback,
         auto_ack=True,
     )
