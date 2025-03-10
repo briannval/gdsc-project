@@ -5,20 +5,13 @@ import time
 import pika
 from flask import Flask
 from flask_cors import CORS
-from routes.base import base_bp
-from routes.mock import mock_bp
-from routes.mq import mq_bp
-from utils.scraper import scrape_util
 
 logging.basicConfig(level=logging.INFO)
 
-CONSUME_QUEUE = "scrape_request"
-PRODUCE_QUEUE = "scrape_process"
+CONSUME_QUEUE = "scrape_process"
+PRODUCE_QUEUE = "scrape_done"
 
 app = Flask(__name__)
-app.register_blueprint(base_bp)
-app.register_blueprint(mq_bp, url_prefix="/mq")
-app.register_blueprint(mock_bp, url_prefix="/mock")
 cors = CORS(app)
 
 rabbitmq_connection = pika.BlockingConnection(
@@ -44,10 +37,10 @@ def produce(res_id):
 
 
 def callback(ch, method, properties, body):
-    print(f"Scraper received message from {CONSUME_QUEUE}: {body.decode()}")
-    time.sleep(2)  # simulate scraping
+    print(f"Processor received message from {CONSUME_QUEUE}: {body.decode()}")
+    time.sleep(2)  # simulate processing
     produce(str(1))
-    print("Scraper signalling processor")
+    print("Processor signalling backend")
 
 
 def consume():
@@ -62,7 +55,4 @@ def consume():
 
 if __name__ == "__main__":
     (threading.Thread(target=consume, daemon=True)).start()
-    try:
-        app.run(debug=True)
-    except:
-        app.run(debug=True, port=5001)
+    app.run(debug=True)  # always start processor before scraper
