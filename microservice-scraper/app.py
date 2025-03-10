@@ -1,18 +1,22 @@
 import logging
+import os
 import threading
 
 import pika
 from flask import Flask
 from flask_cors import CORS
 from routes.base import base_bp
+from routes.mock import mock_bp
 from routes.mq import mq_bp
 from utils.scraper import scrape
 
 logging.basicConfig(level=logging.INFO)
 
+
 app = Flask(__name__)
 app.register_blueprint(base_bp)
 app.register_blueprint(mq_bp, url_prefix="/mq")
+app.register_blueprint(mock_bp, url_prefix="/mock")
 cors = CORS(app)
 
 rabbitmq_connection = pika.BlockingConnection(
