@@ -23,7 +23,7 @@ const server = new McpServer({
   });
 
 async function makeUBCGradesRequest(url: string) {
-    console.error(`Attempting to access URL: ${url}`);
+    // console.error(`Attempting to access URL: ${url}`);
     const headers = {
         "User-Agent": USER_AGENT,
         Accept: "application/json",
@@ -52,7 +52,7 @@ server.tool(
         const subjectCode = subject.toUpperCase();
         const courseCode = course.toUpperCase();
         
-        const url = `${UBC_GRADES_API_BASE}/course-statistics/${subjectCode}/${courseCode}`;
+        const url = `${UBC_GRADES_API_BASE}/course-statistics/UBCV/${subjectCode}/${courseCode}`;
         const data = await makeUBCGradesRequest(url);
 
         if (!data) {
@@ -60,7 +60,7 @@ server.tool(
                 content: [
                     {
                         type: "text",
-                        text: "Failed to retrieve data, data may not exist!",
+                        text: `Failed to retrieve data for ${url}, data may not exist!`, // debugging only
                     },
                 ],
             };
