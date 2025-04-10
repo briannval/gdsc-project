@@ -8,31 +8,22 @@ const USER_AGENT = "mcp/1.0.0"
 
 // Create server instance
 const server = new McpServer({
-  name: "mcp-ubc-advising",
-  version: "1.0.0",
-  capabilities: {
-    resources: {},
-    tools: {},
-  },
-});
+    name: "mcp-ubc-advising",
+    version: "1.0.0",
+    capabilities: {
+      resources: {
+        list: true,  // Enable resources/list
+        get: true,   // Enable resources/get
+      },
+      tools: {
+        list: true,  // Enable tools/list
+        call: true,  // Enable tools/call
+      },
+    },
+  });
 
-export interface UBCGradesCourseSummaryResponse {
-    average?: number;
-    average_past_5_yrs?: number;
-    campus?: string;
-    course?: string;
-    course_title?: string;
-    detail?: string;
-    faculty_title?: string;
-    max_course_avg?: number;
-    min_course_avg?: number;
-    subject?: string;
-    subject_title?: string;
-  }
-  
-  
-
-async function makeUBCGradesRequest<T>(url: string): Promise<T | null> {
+async function makeUBCGradesRequest(url: string) {
+    console.error(`Attempting to access URL: ${url}`);
     const headers = {
         "User-Agent": USER_AGENT,
         Accept: "application/json",
@@ -43,7 +34,7 @@ async function makeUBCGradesRequest<T>(url: string): Promise<T | null> {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return (await response.json()) as T;
+        return (await response.json());
     } catch (error) {
         console.error("Error making UBCGrades request: ", error);
         return null;
@@ -62,7 +53,7 @@ server.tool(
         const courseCode = course.toUpperCase();
         
         const url = `${UBC_GRADES_API_BASE}/course-statistics/${subjectCode}/${courseCode}`;
-        const data = await makeUBCGradesRequest<UBCGradesCourseSummaryResponse[]>(url);
+        const data = await makeUBCGradesRequest(url);
 
         if (!data) {
             return {
