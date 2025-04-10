@@ -88,6 +88,53 @@ server.tool(
     }
 )
 
+server.tool(
+    "get-teaching-team-stats-ubc",
+    "Get teaching team or instructor statistics for a particular subject and course at UBC",
+    {
+        subject: z.string().length(4).describe("Four letter subject code (e.g. CPSC, MATH, DSCI, WRDS)"),
+        course: z.string().refine((val) => val.length === 3 || val.length === 4).describe("Three or four character course code (e.g. 100, 110, 121, 210, 311, 436N)"),
+    },
+    async ({ subject, course }) => {
+        const subjectCode = subject.toUpperCase();
+        const courseCode = course.toUpperCase();
+        
+        const endpoint = `${UBC_GRADES_API_BASE}/course-statistics/teaching-team/UBCV/${subjectCode}/${courseCode}`;
+        const data = await makeUBCGradesRequest(endpoint);
+        
+        if (!data) {
+            return {
+                content: [
+                    {
+                        type: "text",
+                        text: `Failed to retrieve teaching team data for ${subjectCode} ${courseCode}, data may not exist!`,
+                    },
+                ],
+            };
+        }
+        
+        if (data.length === 0) {
+            return {
+                content: [
+                    {
+                        type: "text",
+                        text: `No teaching team data for ${subjectCode} ${courseCode}`,
+                    },
+                ],
+            };
+        }
+        
+        return {
+            content: [
+                {
+                    type: "text",
+                    text: JSON.stringify(data)
+                }
+            ]
+        };
+    }
+);
+
 async function main() {
     const transport = new StdioServerTransport();
     await server.connect(transport);
